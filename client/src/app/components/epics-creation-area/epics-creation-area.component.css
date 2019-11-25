@@ -1,0 +1,23 @@
+mat-expansion-panel
+{
+   max-width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10%;
+}
+.mat-tab-group{
+   margin-top: 50px;
+}
+.example-form-field
+{
+   width: 100%;
+ }
+.verticalspace{
+   height: 100%;
+}
+.expansionPanel{
+   margin-top: 0;
+}
+.errorMessage{
+color: red;
+}

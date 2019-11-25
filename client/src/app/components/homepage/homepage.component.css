@@ -1,0 +1,54 @@
+ #homepart1{
+        background-color: #fbf18e;
+       height: 100%;
+       width: 50%;
+       
+       
+       
+       
+    }
+    #title{
+        padding-left: 30%;
+        padding-top: 20%;
+        font-size:4em;
+        font-family: 'Kaushan Script', cursive;
+    }
+    #small-hr{
+        background:#000 none repeat scroll 0 0;
+    display: block;
+    height: 4px;
+    width: 32px;
+    }
+    #motto{
+        font-family: 'Poiret One', cursive;
+        padding-left: 30%;
+        font-weight: bold;
+    } 
+    .typewrite{
+       
+            
+        font-family: 'Bree Serif', serif;
+            color:black;
+       
+    }
+    #login{
+        background-color: black;
+        padding-left:2em;
+        padding-right: 2em;
+        
+        color: blanchedalmond;
+        border-radius: 0;
+    }
+    #footer{
+        padding-left: 30%;
+        text-align: end;
+    }
+    #homepart2{
+        background: url("../../images/mainbg.jpg");
+        margin-left: 50%;
+    }
+    /* .homepage{
+        display: flex;
+        flex-direction: row;
+    } */
+  

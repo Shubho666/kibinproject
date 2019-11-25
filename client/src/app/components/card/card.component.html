@@ -1,0 +1,85 @@
+<div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0" fxLayoutGap.xs="0">
+  <div class="item mat-display-1" *ngFor="let epic of epics; let I = index" class="base">
+    <mat-card class="display-card">
+      <mat-card-header>
+        <mat-card-title class="mat-h2 mat-title">
+          {{ epic.Epic }}
+        </mat-card-title>
+        <button *ngIf="(Calledby!=='Workspace') || Calledby === 'Workspace'"
+          class="display-header-image" mat-icon-button [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="sendEpicToChangeStatus(epic)"
+          *ngIf="CheckedMenu==false">
+            <mat-icon>group</mat-icon>
+            <span (click)="UpdateKanbanList()" *ngIf="Calledby === 'Workspace' && epic.status =='productbacklog'">
+            Remove From Product Backlog</span>
+            <span (click)="UpdateKanbanList()" *ngIf="Calledby === 'Workspace' && epic.status =='workspace'">
+            Move To Product Backlog</span>
+            <span *ngIf="Calledby === 'Privatespace'">Move To Work Space</span>
+          </button>
+          <button mat-menu-item (click)="epic.userstories.push('add')">
+            <mat-icon>add</mat-icon>
+            <span>Add User Story</span>
+          </button>
+          <button *ngIf="CheckedMenu==false" mat-menu-item (click)="deletepic(epic.Epic, I, epic.EpicId, epic.userStoriesIds)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+          <button *ngIf="CheckedMenu==true && CheckedMenuD == 'move'" mat-menu-item
+          (click)="MoveSelectedToBacklog()">
+              <mat-icon>work</mat-icon>
+              <span>Move Selected to Backlog</span>
+          </button>
+          <button *ngIf="CheckedMenu==true && CheckedMenuD == 'revert'" mat-menu-item
+          (click)="RemoveSelectedFRomBacklog()"
+          >
+              <mat-icon>work_outline</mat-icon>
+              <span>Revert Selected to Workspace</span>
+          </button>
+        </mat-menu>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <div *ngFor="let story of epic.userstories; let i = index">
+            <hr />
+            <mat-list-item *ngIf="story === 'add'">
+              <mat-form-field class="display-form-field" appearance="none">
+                <input #newstory matInput type="text" placeholder="New Story" 
+                (keydown.enter)="addnewstory(epic.Epic, epic.EpicId, newstory.value, I, i)
+                  " />
+                  <button mat-button *ngIf="story === 'add'" matSuffix mat-icon-button aria-label="Clear" 
+                                                                            (click)="epic.userstories.pop()">
+                    <mat-icon>close</mat-icon>
+                    </button>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="listitem" *ngIf="story != 'add'" >
+              <mat-checkbox *ngIf="(Calledby=='Workspace' && epic.status =='workspace')" class="checkbox-margin"
+              [disabled]="((disableCheckBox) && disableCheckBox ==epic.userstoryStatuses[i])?true:false"
+              [(ngModel)]= "epic.userstorychecked[i]" 
+              (change)="CheckBoxClicked(i,epic.EpicId,epic.userstoryStatuses[i],epic.userstorychecked[i],epic.userStoriesIds[i])">
+              </mat-checkbox>
+              <div *ngIf="(Calledby =='Workspace')"  class="mat-body-strong mat-body-2"
+              (click)="SendDatatoDialog(i, story, epic.EpicId, epic.userStoriesIds[i])"
+              [matTooltip] ="epic.userstoryStatuses[i]=='Backlog'?'In Product backlog':null" matTooltipPosition="after"
+              [ngStyle]="{'color': epic.userstoryStatuses[i]=='Backlog'?'green':'black'}">
+                {{ story }}
+              </div>
+
+              <div *ngIf="(Calledby =='Privatespace')"  class="mat-body-strong mat-body-2"
+              (click)="SendDatatoDialog(i, story, epic.EpicId, epic.userStoriesIds[i])">
+                  {{ story }}
+              </div>
+            </mat-list-item>
+          </div>
+        </mat-list>
+        <div *ngIf="Calledby === 'Workspace'&& epic.status === 'productbacklog'">
+          <p class="green-colorC" style="text-align: right;">In productBacklog</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

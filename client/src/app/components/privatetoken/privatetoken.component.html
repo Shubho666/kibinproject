@@ -1,0 +1,50 @@
+<h2>Generate Your Private Token</h2>
+<div class="form">
+Application Name:<input matInput class="input"  id="appname">
+</div>
+<div class="form">
+  Expiry Date:<input matInput class="input" type="datetime-local" id="expirydate">
+</div>
+
+<button mat-button class="form" (click)="getPrivateToken()">Get Token</button>
+<br>
+<textarea readonly *ngIf="privatetoken" #tokenGenerated matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" id="tokenGenerated"
+    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20" contenteditable="style" cdkAutosizeMinCols="30"
+    style="font:12px;" >{{privatetoken}}</textarea>
+
+
+<!-- <form [formGroup]="tokenForm">
+  <mat-form-field style="text-underline-position: below;">
+      Application Name:<input matInput id="appname" formControlName="appName">
+  </mat-form-field>
+  <mat-form-field style="text-underline-position: below;">
+      Expiry Date:<input type="datetime-local" id="expirydate" formControlName="expiryDate">
+  </mat-form-field>
+  <button mat-button class="submit" color="primary" (click)="getPrivateToken()"
+          (click)="tokenForm.reset()">Get Token</button>
+</form>
+<div *ngIf="privatetoken">{{privatetoken}}</div> -->
+<h3>Your Applications</h3>
+<table mat-table [dataSource]="allTokenInfo" class="mat-elevation-z8 table">
+  
+  
+    <ng-container class="cell" matColumnDef="appName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let t"> {{t.appName}} </td>
+    </ng-container>
+  
+    <ng-container class="cell" matColumnDef="expiryDate">
+      <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+      <td mat-cell *matCellDef="let t"> {{t.expiryDate}} </td>
+    </ng-container>
+  
+  
+    <ng-container class="cell" matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let t"><button mat-flat-button color="warn" (click)="revoke(t)">Revoke</button> </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+

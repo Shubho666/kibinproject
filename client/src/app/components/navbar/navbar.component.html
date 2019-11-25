@@ -1,0 +1,68 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar *ngIf="!LoginView" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Kibin</h1>
+    <section class="logbut"> </section>
+    <div id="buttonDiv" *ngIf=isLoggedIn>
+      
+      <button  mat-button [matMenuTriggerFor]="menu"><img class="logouticon" src="{{userDetails.avatar_url}}"></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item id="logout_menu" (click)="logout();">Logout</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'" [fixedInViewport]="mobileQuery.matches"
+      (closed)="panelOpenState=false" fixedTopGap="56">
+      <mat-nav-list>
+        <mat-card mat-list-item class="example-card">
+          <img id="profile" src="{{userDetails.avatar_url}}" alt="User Avatar">
+          <mat-card-content>
+            <h2>{{userDetails.username}}</h2>
+          </mat-card-content>
+        </mat-card>
+        <mat-divider></mat-divider>
+        <a *ngIf="!DashboardView" mat-menu-item routerLink="/dashboard" (click)="snav.toggle()">
+          <mat-icon class="icon">dashboard</mat-icon>Dashboard
+        </a>
+        <mat-expansion-panel (click)="loadProjects()" [class.mat-expansion-panel]="false" [expanded]="panelOpenState"
+          class="proj">
+          <mat-expansion-panel-header>
+            <a mat-menu-item class="exp">
+              <mat-icon class="icon">folder</mat-icon>My Projects
+            </a>
+          </mat-expansion-panel-header>
+          <ng-scrollbar class="virtual-scroll" thumbClass="white-scrollbars">
+            <button *ngFor="let p of projects" matTooltip="{{p.projectName}}" mat-menu-item
+              (click)="routeTo(p);snav.toggle();">{{p.projectName}}</button>
+          </ng-scrollbar>
+        </mat-expansion-panel>
+        <a *ngIf="!DashboardView" mat-menu-item routerLink="/ideazone/workspace/{{IdzoneProjectId}}"
+          (click)="snav.toggle()">
+          <mat-icon class="icon">people</mat-icon>IdeaZone
+        </a>
+        <a *ngIf="!DashboardView" mat-menu-item routerLink="/board/{{IdzoneProjectId}}" (click)="snav.toggle()">
+          <mat-icon class="icon">developer_board</mat-icon>Kanban Board
+        </a>
+        <a *ngIf="!DashboardView" mat-menu-item routerLink="/gantt/{{IdzoneProjectId}}" (click)="snav.toggle()">
+          <mat-icon class="icon">insert_chart_outlined</mat-icon>Gantt Chart
+        </a>
+        <a *ngIf="!DashboardView" mat-menu-item routerLink="/report/{{IdzoneProjectId}}" (click)="snav.toggle()">
+          <mat-icon class="icon">show_chart</mat-icon>Reports
+        </a>
+        <a mat-menu-item routerLink="/myactivity/{{IdzoneProjectId}}" (click)="snav.toggle()">
+          <mat-icon class="icon">access_time</mat-icon>My Activity
+        </a>
+        <!-- <div class="logout-button" mat-menu-item style="text-align: center;">
+          <button mat-raised-button color="warn" (click)="snav.toggle();logout();">Logout</button>
+        </div> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

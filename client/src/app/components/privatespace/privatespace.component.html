@@ -1,0 +1,56 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <!-- <a mat-list-item routerLink="/" class="material-icons work"><i class="material-icons work">work</i><div >Product Backlog</div></a> -->
+        <div>
+        <a mat-list-item [routerLink]="['/ideazone/workspace/' +ProjectId]"><i class="material-icons work" >people</i><div >Workspace</div></a>
+        <!-- <a mat-list-item (click)="changeView(false)" [routerLink]= "['/ideazone/workspace/' +ProjectId]" class="mat-h2 backlogposition">Home</a>
+        <a mat-list-item (click)="changeView(true)"  [routerLink]= "['/ideazone/workspace/' +ProjectId]" class="mat-h2 backlogposition">Suggestions</a> -->
+      </div>
+      <div>
+    <a mat-list-item [routerLink]="['/ideazone/privatespace/']" routerLinkActive="active" ><i class="material-icons work">person</i><div >Privatespace</div></a>
+    <!-- <a mat-list-item (click)="requestsView=false" [routerLink]="['/ideazone/privatespace/']" class="mat-h2 backlogposition">Home</a>
+    <a mat-list-item (click)="requestsView=true"  [routerLink]="['/ideazone/privatespace/']" class="mat-h2 backlogposition">My Suggestions</a> -->
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- 
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" class="material-icons work"><i class="material-icons work">work</i><div >Product Backlog</div></a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title (click)="($event.stopPropagation())">
+            <i class="material-icons work">people</i><div >Workspace</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <a mat-list-item (click)="changeView(false)"  [routerLink]="['/ideazone/Workspace']" class="mat-h2 backlogposition">Home</a>
+        <a mat-list-item (click)="changeView(true)" [routerLink]="['/ideazone/Workspace']"  class="mat-h2 backlogposition">Requests</a>
+      
+    </mat-expansion-panel> -->
+  <!-- 
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title (click)="($event.stopPropagation())">
+          <i class="material-icons work">person</i><div >Privatespace</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    <a mat-list-item (click)="requestsView=false" [routerLink]="['/ideazone/Privatespace']" class="mat-h2 backlogposition">Home</a>
+    <a mat-list-item (click)="requestsView=true" [routerLink]="['/ideazone/Privatespace']"  class="mat-h2 backlogposition">My Requests</a>
+  </mat-expansion-panel>
+
+    </mat-nav-list> -->
+  <!-- </mat-sidenav> -->
+  <mat-sidenav-content>
+      <img class="parallax" src="../../../assets/images/abstract-art-black-background-blur-1040499.jpg">
+      <h1 class="mat-display-2 title">{{ProjectName}}</h1>
+      <h1 class="mat-display-1 ideaTitle">IdeaZone - Privatespace</h1>
+    <app-epics-creation-area
+      [requestsView]="requestsView"
+      [calledBy]="'Privatespace'"
+    ></app-epics-creation-area>
+  </mat-sidenav-content>
+</mat-sidenav-container>

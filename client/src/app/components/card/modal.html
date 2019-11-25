@@ -1,0 +1,43 @@
+<button class="inmodal" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+ </button>
+ <mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="deleteUserStory(data)">
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+ </mat-menu>
+ <div class="Storytitle">
+  <h2>{{ data.story }}</h2>
+ </div>
+ <div class="modal">
+  <div class="storytitle">
+    <h4>Edit User Story</h4>
+    <input #ip matInput type="text" placeholder="{{ data.story }}" appearance="none" [(ngModel)]="data.story" />
+  </div>
+  <mat-form-field class="feat">
+    <mat-label>Select Story Type</mat-label>
+    <mat-select [(value)]="data.type">
+      <mat-option value="Feature">Feature</mat-option>
+      <mat-option value="Bug">Bug</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <h4>Acceptance Criteria</h4>
+  <ul>
+    <li *ngFor="let criteria of data.ac; let i = index" class="flex">
+      {{ criteria }}
+      <button class="clearcriteria" mat-icon-button (click)="deletecriteria(i)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </li>
+  </ul>
+  <div class="Addcriteria">
+    <input #newcriteria matInput type="text" placeholder="Add Acceptance criteria"
+      (keydown.enter)="data.ac.push(newcriteria.value); newcriteria.value = ''" appearance="none" />
+  </div>
+  <div style="display:flex; justify-content:flex-end; padding: 1rem;">
+    <button mat-flat-button  color="primary" (click)="saveModifiedUserDetails(data)">
+      Save
+    </button>
+  </div>
+ </div>

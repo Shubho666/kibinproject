@@ -1,0 +1,76 @@
+h2{
+  padding-left: 2%;
+}
+#create{
+  margin-left:2%;
+  height:3em;
+  width:3em;
+  margin-top:6em;
+  /* border-radius: 50%; */
+}
+
+#projectCards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.expand:hover{
+  cursor:pointer;
+}
+
+mat-card-content{
+  height:5em;
+  overflow:hidden;
+}
+
+.header{
+  padding:0.5em;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.example-card{
+  width:15em;
+  margin:1em;
+  text-align: left;
+  border-radius:0em;
+}
+
+#projectName{
+  font-family:Roboto, "Helvetica Neue", sans-serif;
+  text-align:left;
+  border:none;
+  outline:none;
+  background: none;
+  font-weight: bold;
+  font-size: 1.3em; 
+}
+
+#projectDescription{
+  text-align:left;
+  border:none;
+  outline:none;
+  font-size: 1em;
+  width:100%;
+  resize:none;
+  font-family:Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+@media only screen and (max-width:425px){
+  .ng-star-inserted{
+    margin-left:1em;
+  }
+  #create{
+    margin-top:1em;
+    margin-left:8em;
+  }
+  h2{
+    margin-left:9%;
+  }
+  mat-sidenav-content{
+    width:85%;
+  }
+  
+}

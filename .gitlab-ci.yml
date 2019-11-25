@@ -1,0 +1,107 @@
+cache:
+ key: ${CI_COMMIT_REF_SLUG}
+ paths:
+   - node_modules/
+stages:
+ - test
+ - build
+ - dockerize
+ - deploy
+# frontend-test:
+#  image: zenika/alpine-chrome:with-node
+#  stage: test
+#  script:
+#    - cd client
+#    - npm install
+#  #   - npm run test-headless
+#  cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    paths:
+#      - node_modules/
+#    policy:
+#      push
+#  tags:
+#    - cgi-w3
+# backend-test:
+#  image: microsoft/dotnet:2.2-sdk
+#  stage: test
+#  script:
+#    - cd ./server/Kibin.Tests
+#    - dotnet test
+#  tags:
+#    - cgi-w3
+# frontend-build:
+#  image: node:lts-alpine
+#  stage: build
+#  script:
+#    - cd client
+#    - npm build
+#  cache:
+#    key: ${CI_COMMIT_REF_SLUG}
+#    paths:
+#      - node_modules/
+#    policy: pull
+#  tags:
+#    - cgi-w3
+# backend-build:
+#  image: microsoft/dotnet:2.2-sdk
+#  stage: build
+#  script:
+#    - cd ./server/Kibin
+#    - dotnet build
+#  tags:
+#    - cgi-w3
+
+dockerize-stage:
+  stage: dockerize
+  image: docker
+  script:
+  - export DOCKER_HOST=unix:///var/run/docker.sock
+  - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+  - docker build -t kibin8008/kibin-boards-frontend:${CI_COMMIT_SHORT_SHA} client
+  - docker tag kibin8008/kibin-boards-frontend:${CI_COMMIT_SHORT_SHA} kibin8008/kibin-boards-frontend:latest
+  - docker push kibin8008/kibin-boards-frontend:latest
+  - docker push kibin8008/kibin-boards-frontend:${CI_COMMIT_SHORT_SHA}
+  - docker build -t kibin8008/kibin-boards-backend:${CI_COMMIT_SHORT_SHA} server
+  - docker tag kibin8008/kibin-boards-backend:${CI_COMMIT_SHORT_SHA} kibin8008/kibin-boards-backend:latest
+  - docker push kibin8008/kibin-boards-backend:${CI_COMMIT_SHORT_SHA}
+  - docker push kibin8008/kibin-boards-backend:latest
+  only:
+  - TestBranch
+  
+  tags:
+    - cgi-w3
+
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config set-cluster k8s --server https://api.cgi-w3.stackroute.io
+
+    - kubectl config set clusters.k8s.certificate-authority-data $CERTIFICATE_AUTHORITY_DATA
+    - kubectl config set-credentials proflo-deployer
+    - kubectl config set users.proflo-deployer.client-certificate-data $CLIENT_CERTIFICATE_DATA
+    - kubectl config set users.proflo-deployer.client-key-data $CLIENT_KEY_DATA
+    - kubectl config set-context proflo-context --cluster=k8s --user=proflo-deployer --namespace=proflo
+    - kubectl config use-context proflo-context
+    - kubectl describe pods
+   
+    - kubectl describe ingress
+    - cd client/k8s
+    
+    - kubectl apply -f .
+    - cd ../../server/k8s
+    - kubectl apply -f .
+    - kubectl describe services
+    
+    - kubectl describe deployment
+  only:
+    - TestBranch
+  
+     
+    
+    
+     
+    
+  tags:
+    - cgi-w3

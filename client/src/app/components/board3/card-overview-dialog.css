@@ -1,0 +1,115 @@
+.maticonshow1,.maticonshow2{
+    display: none;
+    /* width:100%; */
+    /* text-align: right; */
+  }
+  
+  
+
+  mat-checkbox:hover .maticonshow1{
+    display: inline;
+  }
+
+  li:hover .maticonshow2{
+      display: inline;
+  }
+
+  #subtask{
+    margin-left:1em;
+    margin-bottom:0.3em;
+  }
+
+  /* .mat-chip-list-wrapper{
+    width:80%;
+  } */
+  .submit{
+   margin-left:1em;
+   display:none;
+  }
+
+  #deletetask{
+    display:none;
+  }
+
+  #taskname{
+    padding:1em;
+    padding-top:0;
+    font-weight: bold;
+  }
+  #taskname:hover #deletetask{
+    display:inline;
+  }
+
+  #actions{
+    text-align: right;
+  }
+
+  #inputst{
+    width:8em;
+    font-size: 0.9em;
+  }
+
+  .textArea{
+    height: auto;
+  }
+  
+
+  .example-radio-button {
+    margin: 1em;
+  } 
+
+  
+
+  .mat-input-element{
+    max-width:105%;
+  }
+
+  :host ::ng-deep .mat-radio-container{
+    height: 15px;
+    width: 15px;
+  }
+  :host ::ng-deep .mat-radio-outer-circle{
+    height: 15px;
+    width: 15px;
+  }
+  :host ::ng-deep .mat-radio-inner-circle{
+    height: 15px;
+    width: 15px;
+  }
+  ::ng-deep .mat-chip-list-wrapper{
+    width:80%;
+  }
+
+  
+#title1{
+  /* border:none; */
+  outline:none;
+  font-size: 1em;
+  width:100%;
+  resize:none;
+  overflow: hidden;
+  min-height: 19px;
+  font-weight: bold;
+  font-size: 1.5em;
+  /* overflow:hidden; */
+  /* height:3em; */
+}
+#title1:focus{
+  border-bottom: 1px;
+}
+textarea{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border: none;
+  min-height: 19px;
+
+}
+#title1::-webkit-scrollbar { 
+  display: none; 
+  padding-bottom: 3px;
+} 
+
+@media only screen and (max-width:320px){
+  #container{
+    height:23em;
+  }
+}

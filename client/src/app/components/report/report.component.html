@@ -1,0 +1,32 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Bar Chart">
+    <div class="example-small-box mat-elevation-z4">
+      <div class="graph">
+        <div *ngIf=barChartLabels>
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+              [legend]="barChartLegend" [chartType]="barChartType"  (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <button mat-button mat-raised-button color="primary" (click)="randomize()" style="margin: 1em;">Update</button>
+           <button mat-raised-button color="" (click)="openDialog()">How to read?</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Doughnut">
+    <div class="example-large-box mat-elevation-z4">
+      <div>
+        <div>
+          <div style="display: block">
+            <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="barChartLabels"
+              [chartType]="doughnutChartType">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

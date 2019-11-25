@@ -1,0 +1,35 @@
+<p>chatsystem works!</p>
+<div class="container">
+    <div id="contacts">
+        <div *ngFor="let l of allMessages" >
+            <mat-card *ngIf="l.group[0]==userid"  (click)="selectedCardChange(l.group[1])">
+                {{l.group[1]}}
+
+            </mat-card>
+            <mat-card *ngIf="l.group[0]!=userid" (click)="selectedCardChange(l.group[0])">
+                {{l.group[0]}}
+
+            </mat-card>
+        </div>
+
+    </div>
+
+    <div id="messages">
+
+        <div *ngFor="let l of allMessages[selectedcard].message">
+            <p *ngIf="l.sender==userid" style="align-content: flex-start;">
+                <span style="color:red">{{l.sender}}</span>:{{l.text}}
+
+            </p>
+            <p *ngIf="l.sender!=userid" style="align-content: flex-end;">
+                {{l.sender}}:{{l.text}}
+
+            </p>
+        </div>
+
+    </div>
+    <div id="chattext" >
+        <input id="chatmsg" style="padding:0;margin:0;width:90%;height:3em">
+        <button mat-flat-button color="primary" id="sendmsg" style="padding:0;margin:0;width:10%;height:3em">Send</button>
+    </div>
+</div>

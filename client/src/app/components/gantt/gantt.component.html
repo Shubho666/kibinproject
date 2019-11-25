@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <script src="https://docs.dhtmlx.com/gantt/codebase/dhtmlxgantt.js?v=6.0.0"></script>
+  <script src="../../../../node_modules/dhtmlx-gantt/codebase/dhtmlxgantt.js"></script>
+  <script src="https://docs.dhtmlx.com/gantt/codebase/ext/dhtmlxgantt_tooltip.js?v=20180322"></script>
+  <script src="gantt.component.ts"></script>
+</head>
+
+<body class="body">
+  <div class="total">
+    <h1 class="mat-display-1 title" class="Project">{{ProjectName}}</h1>
+  <div class="activityButton" ><button mat-flat-button  (click)="openBottomSheet()">View Activity</button>
+  </div>
+  <input type="button" id="collapse" value="Toggle Grid" (click)="toggleGrid()">
+  <div class="heading">
+    
+    <h1 class="mat-display-2 title" class="GanttTitle" >Gantt Chart</h1>
+    <label for="decide" class="title">Select view :</label>
+    
+    <mat-form-field>
+      <mat-select (click)="setScaleConfig($event.value)" [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let food of foods" (click)="setScaleConfig(food.value)" [value]="food.value" >
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div #gantt_here class='gantt-chart'></div>
+</div>
+</body>
+
+</html>

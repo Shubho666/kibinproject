@@ -1,0 +1,5 @@
+node_modules/
+.git/
+nginx/
+dist/
+k8s/

@@ -1,0 +1,84 @@
+.parallax {
+  z-index: -7;
+
+  left: -10rem;
+
+
+
+  /* Set up proportionate scaling */
+  width: 120%;
+
+
+  /* Set up positioning */
+  position: fixed;
+
+
+}
+
+h1,
+h2 {
+  padding-left: 2%;
+  padding-top: 2%;
+  margin-bottom: 2%;
+}
+
+.ideaTitle {
+  padding-top: 1%;
+  padding-left: 6%;
+  color: #eee;
+}
+
+.title {
+  color: #eee;
+}
+
+.move-button {
+  min-width: 5rem;
+  min-height: 5rem;
+}
+
+.mat-sidenav {
+  border: rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 12px -8px rgba(255, 255, 255, 0.397);
+  background-color: rgba(238, 238, 238, 0);
+}
+
+.mat-list-item {
+  margin-top: 1rem;
+  color: #eee;
+}
+
+.work {
+  padding-right: 1rem;
+}
+
+.backlogposition {
+  position: sticky;
+  top: 0;
+  padding-left: 4rem;
+}
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+mat-expansion-panel {
+  margin-top: 2rem;
+  z-index: 0;
+}
+
+.disable {
+  pointer-events: none;
+  cursor: default;
+}
+
+.mat-nav-list a.active {
+  background: rgba(216, 216, 216, 0.137);
+  pointer-events: none;
+  cursor: default;
+}

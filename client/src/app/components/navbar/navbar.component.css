@@ -1,0 +1,110 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#buttonDiv{
+  margin-left:87%;
+}
+.expand_icon{
+  margin-left:0.3em;
+}
+.expand_icon:hover{
+  cursor:pointer;
+}
+.logbut{
+  width: 4rem;
+}
+.logouticon{
+  height:2rem;
+  border-radius:2rem;
+  
+  
+}
+.example-is-mobile .example-toolbar  {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+  
+  
+}
+.mat-toolbar .mat-primary{
+  background: aquamarine;
+  color: beige;
+}
+h2.example-app-name {
+  margin-left: 8px;
+}
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+  }
+  .example-card {
+    max-width: 210px;
+    box-shadow: none;
+  }
+  h2{
+    text-align: center;
+  }
+  .mat-list-item{
+    text-align: center;
+  }
+  .mat-divider{
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .logout-button{
+    padding-top: 2rem;
+  }
+  .icon{
+    margin-right: 1rem;
+  }
+  #profile{
+    height:5em;
+    width:5em;
+    margin-top:0.5em;
+    border-radius:3em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .mat-button{
+    height:3rem;
+    width: auto;
+    padding: 0;
+    border-radius:5rem ;
+  }
+ .exp{
+   padding-left:0 ;
+ }
+ .mat-expansion-panel-header {
+   padding-left: 16px;
+   padding-right: 12px;
+ }
+.proj .mat-expansion-panel-body{
+   padding: 0;
+ }
+.example-item {
+  height: 50px;
+}
+::ng-deep ng-scrollbar.virtual-scroll {
+  --scrollbar-size: 2px;
+  --scrollbar-thumb-color: gray;
+  --scrollbar-hover-size: 5px;
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+  --scrollbar-border-radius: 10px;
+  --scrollbar-padding: 0px;
+  max-height: 7rem;
+  overflow: hidden;
+}

@@ -1,0 +1,383 @@
+.parallax{
+  z-index: -2;
+ 
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+
+	
+  /* Set up positioning */
+  position: fixed;
+ 
+
+}
+.acti{
+  color: #eee;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 12px 1px rgba(255, 255, 255, 0.678);
+}
+h2{
+  padding-left: 3.5%;
+  }
+h4{
+  margin-left:3.5%;
+  margin-bottom:0;
+}
+/* .flex{
+  display:flex;
+  flex-direction: row;
+} */
+#proname{
+  font-size:24px;
+  font-weight: bold;
+  padding-left: 3.5%;
+  color: #E6E2E2;
+  }
+.activityButton{
+  
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+}
+
+#memberList{
+  margin-left:2em;
+}
+
+.icon{
+  font-size:1.5em;
+}
+
+#chips{
+  display:flex;
+  flex-direction: row;
+  margin-left:3.5%;
+  margin-top:1em;
+}
+#member_avatar{
+  height:2em;
+  border-radius:1em;
+}
+::ng-deep .mat-chip-list-wrapper{
+  width:70em;
+}
+  #member{
+    margin:2%;
+    display: flex;
+    flex-direction: row;
+  }
+  #input_member{
+    border:none;
+    border-bottom: 2px black;
+  }
+  .search{
+    margin-left:5%;
+  }
+::ng-deep .completer-input{
+  /* border:2em; */
+  outline:none;
+  margin-left: 1em;
+  padding:1em;
+  border-radius:0.3em;
+  background:none;
+  font-size:0.9em;
+}
+
+#list_delete:hover{
+  cursor:pointer;
+}
+
+.mat-input-element{
+  max-width:135%;
+ }
+ 
+::ng-deep .completer-dropdown {
+  width: 25% !important;
+  margin-left:0.8em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 10rem;
+}
+
+.dateinput{
+  margin-left:0.5em;
+}
+
+.focusit{
+  -moz-user-focus: always;
+}
+
+  textarea{   
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    border: none;
+    outline:none;
+    resize: none;
+    overflow:hidden;
+  }   
+  .drop-list-dragging{
+    background-color: black;
+    background: black;
+    color:black;
+  }
+  
+  
+  input{
+    border:none;
+  }
+.mat-input-element{
+  max-width:100%;
+  min-height: 19px;
+}
+
+.list-placeholder {
+  background:#999;
+  border: dotted 3px black;
+  min-width: 20em;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.list-placeholder2 {
+  background:rgb(235, 235, 235);
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+
+:host  .mat-form-field-underline {
+  display: none;
+  margin:10px;
+}
+/* ::ng-deep */
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  #container1.cdk-drop-list.cdk-drop-list-dragging{
+    background-color: black;
+  }
+  .cdk-drag-preview {
+     
+     /* background-color:pink; */
+      z-index: 3; 
+      
+    }
+    
+    
+    /* #list.cdk-drag-preview{
+      background-color:pink;
+    } */
+  .maticonshow{
+    text-align:right;
+    display:block;
+    position: inherit;
+    top:0px;
+    left:0px;
+  }
+  
+  .iconbutton{
+    padding:0;
+  }
+  /* .maticonshow,.mationshow1{
+    display: none;
+    width:100%;
+    text-align: right;
+  }
+  */
+  
+  mat-card:hover .maticonshow{
+    display: block;
+    cursor: move;
+  } 
+  mat-card:-moz-drag-over .maticonshow{
+    background-color: black;
+    color:black;
+    
+  }
+  .mat-list-item-content {
+    padding:0;
+  }
+  #container{
+    display:flex;
+    flex-direction:row;
+    /* flex-wrap:nowrap; */
+    /* justify-content: space-around; */
+    margin-top:1em;
+    /* margin-left:1em; */
+    /* background:#E6E2E2; */
+  }
+  #list{
+    /* background: #E6E2E2; */
+    margin:1em;
+    padding-left:1em;
+  }
+  /* .cardsContainer{
+    display:flex;
+    flex-direction:row;
+    
+    justify-self: space-between;
+    
+  } */
+  .location{
+    margin-left:5em;
+    /* margin-top:1em; */
+  }
+  
+#title{
+  /* border:none; */
+  outline:none;
+  font-size: 1em;
+  width:100%;
+  resize:none;
+  overflow: hidden;
+  min-height: 19px;
+  
+  
+  /* overflow:hidden; */
+  /* height:3em; */
+}
+    #title::-webkit-scrollbar { 
+      display: none; 
+      padding-bottom: 3px;
+    } 
+/* #title:focus{
+  border-bottom: 1px;
+} */
+textarea{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border: none;
+  min-height: 19px;
+
+}
+ 
+#list_title{
+  border:none;
+  outline:none;
+  font-size: 1.2em;
+  font-weight: bold;
+  background:#ececec;
+  padding:0.8em;
+  padding-left:0;
+  width:100%;
+  border-radius:0.5em;
+}
+#card{
+  width:20em;
+  padding-left:1em;
+  background: #ececec;
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+.inside-card{
+  width:20em;
+  margin-right:0;
+}
+#container1{
+  display:flex;
+  flex-direction:row;
+
+  /* flex-wrap:nowrap; */
+  /* justify-content: space-around; */
+  /* margin:1em;
+  margin-left:1em; */
+}
+
+#buttonsdiv{
+  background: #E6E2E2;
+  padding:0.5em;
+  border-radius:0em 0em 0.5em 0.5em;
+  text-align:center;
+}
+
+/* .cdk-drag-preview{
+  cursor:grabbing;
+} */
+
+#create{
+  margin-left:2.2%;
+  /* height:3em; */
+  /* width:10em; */
+  margin-top:2em;
+  /* border-radius: 50%; */
+}
+
+#actions{
+  text-align: right;
+}
+
+#addresponsive{
+  display:none;
+}
+
+.radio{
+  /* margin-left:1em; */
+  margin-top:1em;
+}
+.point{
+  margin-left:0.5em;
+  color: #E6E2E2;
+}
+
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 15px;
+  width: 15px;
+}
+
+@media only screen and (max-width:375px){
+  #container{
+    display: inline;
+  }
+  .activityButton{
+    margin-left:0;
+  }
+  #create{
+    margin-left:8em;
+    margin-bottom:1em;
+  }
+  #card{
+    padding-left: 0px;
+    width:17em;
+    padding:1em;
+  }
+  .inside-card{
+    width:17em
+  }
+  #list{
+    margin-left:0px;
+  }
+  #buttonsdiv{
+    max-width:20em;
+  }
+  .mem{
+    color: #E6E2E2;
+  
+  }
+  #add{
+    display:none;
+  
+   
+  }
+  #addresponsive{
+    display:inline;
+  }
+  .mat-button-wrapper{
+    width:2em !important;
+  }
+  h2{
+    margin-left:0.7em;
+  }
+  .mat-dialog-container{
+    height:28em;
+  }
+  ::ng-deep .completer-dropdown {
+    width: 203px !important;
+  }
+  ::ng-deep .mat-chip-list-wrapper{
+    width:17em;
+  }
+}

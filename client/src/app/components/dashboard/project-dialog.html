@@ -1,0 +1,31 @@
+<h1 mat-dialog-title><strong>Enter New Project Details</strong></h1>
+<div mat-dialog-content>
+  <!-- <p>Project Name</p> -->
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.project_name" placeholder="Project Name">
+  </mat-form-field>
+  <!-- <p>Project Description</p> -->
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.project_description" placeholder="Project Description">
+  </mat-form-field>
+  <!-- <p>Project Start Date</p> -->
+  <mat-form-field>
+    <!-- <input matInput type="datetime-local" [(ngModel)]="data.project_startdate"> -->
+    <input matInput id="startdatetime" [(ngModel)]="data.project_startdate" [matDatepicker]="picker"
+      placeholder="Choose a start date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <!-- <p>Project End Date</p> -->
+  <mat-form-field>
+    <!-- <input matInput type="datetime-local" [(ngModel)]="data.project_enddate"> -->
+    <input matInput id="enddatetime" [(ngModel)]="data.project_enddate" [matDatepicker]="picker1"
+      placeholder="Choose an end date">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions id="actions" style="justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+</div>

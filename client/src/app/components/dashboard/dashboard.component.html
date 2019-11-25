@@ -1,0 +1,46 @@
+<h2><strong>Your Projects</strong></h2>
+
+
+<div id="projectCards">
+  <div *ngFor="let p of all_projects">
+    <mat-card class="example-card flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" >
+          <!-- <mat-card-header class="header" style="text-align: left;"> -->
+            <div style="margin-bottom:1em;">
+              <!-- <input #projectName id="projectName" value={{p.projectName}} (blur)="onBlurName(projectName.value,p)"> -->
+              <textarea #projectName matInput cdkTextareaAutosize matTooltip="Edit project name" #autosize="cdkTextareaAutosize" id="projectName"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20" contenteditable="style" cdkAutosizeMinCols="30"
+                style="width:80%;font:12px;padding:0;margin:0;overflow:hidden"
+                (keydown.enter)="onBlurName(projectName.value,p);false"
+                (blur)="onBlurName(projectName.value,p)">{{p.projectName}}</textarea>
+                <i class="material-icons expand"  [matMenuTriggerFor]="menu">more_vert</i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="routeTo(p)">Open</button>
+                  <button mat-menu-item (click)="deleteProject(p)">Delete Project</button>
+                </mat-menu>
+
+            </div>
+          <!-- </mat-card-header> -->
+          <mat-card-content>
+            <textarea rows="5" cols="23" #projectDescription id="projectDescription" matTooltip="Edit project description"
+              (keydown.enter)="onBlurDescription(projectDescription.value,p);false"
+              (blur)="onBlurDescription(projectDescription.value,p)">{{p.projectDescription}}</textarea>
+          </mat-card-content>
+        </div>
+        <!-- <div class="flip-card-back" style="text-align: right;"> -->
+          <!-- <button mat-button (click)="routeTo(p)">Open</button> -->
+          <!-- <button mat-button (click)="deleteProject(p)">Delete</button> -->
+          <!-- <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">more_vert</i></button>
+          <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="routeTo(p)">Open</button>
+            <button mat-menu-item (click)="deleteProject(p)">Delete Project</button>
+          </mat-menu>
+        </div> -->
+      </div>
+    </mat-card>
+  </div>
+  <button mat-raised-button id="create" color="primary" matTooltip="Add new project" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

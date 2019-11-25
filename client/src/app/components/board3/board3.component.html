@@ -1,0 +1,146 @@
+
+  <img class="parallax" src="../../../assets/images/grayscale-photo-of-volcano-997443 (1).jpg">
+    <div class="activityButton"><button mat-flat-button class="acti" (click)="openBottomSheet()">View Activity</button></div>
+
+<p id="proname" *ngIf="projectDetails">{{projectDetails.projectName}}</p>
+
+
+<!-- </div> -->
+
+<div id="member">
+  <ng2-completer #member style="border:none;border-bottom: 2px black;" [datasource]="allUserDataArray"
+    [minSearchLength]="1" placeholder="Enter username"></ng2-completer>
+  <mat-radio-group [(ngModel)]="role" class="radio">
+    <mat-radio-button class="point" value="owner">Owner</mat-radio-button>
+    <mat-radio-button class="point" value="member">Member</mat-radio-button>
+  </mat-radio-group>
+  <button mat-flat-button id="add" class="mem" style="margin-left:2em;"  (click)=addMembers(member)>
+    Add Members
+  </button>
+  <button  mat-flat-button id="addresponsive" style="margin-left:2em;" color="primary" (click)=addMembers(member)>
+    Add
+  </button>
+</div>
+
+<div>
+  <h4 style="color: #E6E2E2;">Members Of This Board:</h4>
+  <!-- <ul id="memberList" *ngFor="let member of membersOfBoard">
+    <li id="listElement">{{member}}<button mat-button id="deleteMember" (click)=removeMember(member)>Remove</button></li>
+  </ul> -->
+  <div id="chips">
+    <!-- <mat-chip-list>
+      <mat-chip *ngFor="let member of membersOfBoard"><img src="{{member.img}}">
+        <mat-icon matChipRemove matTooltip="Remove Member"  (click)=removeMember(member)>cancel
+        </mat-icon>
+        <mat-icon matChipRemove matTooltip="Make owner" id="{{member.name}}" *ngIf=member.status  (click)=transfer(member)>done
+        </mat-icon>
+      </mat-chip>
+    </mat-chip-list> -->
+    <div *ngFor="let member of membersOfBoard">
+      <img id="member_avatar" matTooltip="{{member.name}}" src="{{member.img}}" [matMenuTriggerFor]="menu">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item id="{{member.name}}" *ngIf=member.status  (click)=transfer(member)>Make owner</button>
+        <button mat-menu-item (click)=removeMember(member)>Remove member</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
+
+<div id="container" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)='drop1($event)'>
+  <div id="list" cdkDropListGroup *ngFor="let l of allLists" cdkDrag>
+    <!-- <img *cdkDragPreview [src]="movieposter"> -->
+    <div class="list-placeholder" *cdkDragPlaceholder></div>
+
+    <div cdkDropList id="{{l.name}}" [cdkDropListData]="l.userStory" [cdkDropListConnectedTo]="connectedTo"
+      (cdkDropListDropped)="drop($event)">
+
+
+
+      <div id="container1">
+        <div id="card" style="background:#E6E2E2 ;
+        width:20em;
+        padding-left:1em; padding-bottom: 0.3em;
+        background: #E6E2E2;
+        border-radius: 0.5em 0.5em 0 0;">
+          <!-- <div> -->
+          <input #list_title id="list_title" style="border:none;
+            outline:none;
+            font-size: 1.2em;
+            font-weight: bold;
+            background:#E6E2E2;
+            padding:0.8em;
+            padding-left:0em;
+            width:87%;
+            border-radius:0.5em;" matTooltip="Edit Column Name" (keydown.enter)="onBlurList(list_title.value,l);"
+            value="{{l.name}}">
+          <!-- </div> -->
+          <!-- <div style="padding-top:0.75em;" id="list_delete"> -->
+          <span [ngSwitch]="l.name=='Product Backlog'">
+            <i class="material-icons" *ngSwitchCase='false' id="list_delete" [matMenuTriggerFor]="menu">
+              more_vert
+            </i>
+          </span>
+          <!-- <i class="material-icons" id="list_delete" [matMenuTriggerFor]="menu">
+            more_vert
+          </i> -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteColumn(l)">Delete Column</button>
+          </mat-menu>
+          <!-- </div> -->
+          <div *ngFor="let userstory of l.userStory" cdkDrag>
+            <!-- <img *cdkDragPreview [src]="cardposter"> -->
+
+            <div class="list-placeholder2" *cdkDragPlaceholder></div>
+            <mat-card-content>
+              <mat-card class="inside-card">
+                <mat-card-content style="text-align: left;">
+                  <textarea #title matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                    matTooltip="Edit User Story Name" id="{{userstory.userStoryId}}" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="20" contenteditable="style" cdkAutosizeMinCols="30"
+                    style="width:100%;font:12px;padding:0;margin:0;overflow:hidden;resize:none;"
+                    (blur)="onBlurUpdate(title.value,l,userstory);delCardIfEmpty(userstory,l);"
+                    (keydown.esc)="delCardCondition(l,userstory)"
+                    (keydown.enter)="onBlurUpdate(title.value,l,userstory);addCardCondition(l,userstory);false">{{userstory.userStoryName}}</textarea>
+
+                  <div class="maticonshow">
+                    <!-- <button mat-button class="iconbutton" matTooltip="Open User Story" (click)=openDialog1(userstory)>
+                      <mat-icon>launch</mat-icon>
+                    </button> -->
+                    <button mat-button class="iconbutton" matTooltip="Open User Story" (click)=openDialog1(userstory)>
+                      <mat-icon class="icon">launch</mat-icon>
+                    </button>
+                    <!-- <button mat-button disabled *ngSwitchCase="true" class="iconbutton" matTooltip="Delete User Story" (click)=deletecard(userstory,l)>
+                      <mat-icon class="icon">delete</mat-icon>
+                    </button> -->
+                    <button mat-button class="iconbutton" matTooltip="Delete User Story"
+                      (click)=deletecard(userstory,l)>
+                      <mat-icon class="icon">delete</mat-icon>
+                    </button>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </mat-card-content>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="buttonsdiv" style="background:#E6E2E2;padding:0.5em; 
+    max-width:20em;border-radius:0em 0em 0.5em 0.5em;" *ngIf="tempdis">
+
+      <!-- <button mat-button (click)=openDialog(l)>
+          Add User Story
+        </button> -->
+      <button mat-button *ngIf="disableAddUS" (click)=addCard(l)>
+        Add User Story
+      </button>
+      <!-- <button mat-button (click)=deleteColumn(l)>Delete column</button> -->
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <button mat-fab matTooltip="Add new column (Ctrl+L)" id="create" color="primary" (click)=openDialog2()>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<app-bottom-sheet-activity></app-bottom-sheet-activity>

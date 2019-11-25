@@ -1,0 +1,37 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:18224",
+      "sslPort": 44379
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Kibin": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ClientID": "e20f75e27d4e896699ff7dc85f3521f1e6e40d7741201bf5c1138fa4c28c270f",
+        "ClientSecret": "b4e4fb4988915f351ac784a489adb083a38c8ac0a9e0b7a56d287a5b88b50f99",
+        "CallbackURL": "http://proflo.app.cgi-w3.stackroute.io/boards/api/auth/callback",
+        "RabbitMQURL": "rabbitmq",
+        "ClientURL": "http://proflo.app.cgi-w3.stackroute.io",
+        "DBName": "KibinDbKanban",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DBConnectionString": "mongodb://admin:password@boardsdb"
+      },
+      "applicationUrl": "http://proflo.app.cgi-w3.stackroute.io"
+    }
+  }
+}

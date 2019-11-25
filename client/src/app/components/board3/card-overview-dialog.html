@@ -1,0 +1,153 @@
+<div *ngIf="clickedus" id="container">
+
+  <!-- <h1 mat-dialog-title style="text-align: left; font-size: 1.8em;">{{clickedus.shortName}}</h1> -->
+  <textarea #title1 matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" id="title1" class="{{clickedus.id}}"
+    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20" contenteditable="style" cdkAutosizeMinCols="30"
+    style="width:100%;font:12px;" (blur)=changeUsName(title1.value)
+    (keydown.enter)=changeUsName(title1.value);false>{{clickedus.shortName}}</textarea>
+  <div mat-dialog-content>
+    <!-- <p style="text-align: left;">{{clickedus.description}}</p> -->
+
+  
+    <div *ngIf="linkedToCard">
+      <div *ngIf="clickedus.linkedToId!=clickedus.uniqueId">
+      <p>This task is linked to <em>{{linkedToCard.shortName}}</em></p>
+      <p ><strong class="fix">Change link:</strong>
+        <mat-form-field>
+          <!-- <mat-label></mat-label> -->
+          <mat-select id="dependency" (selectionChange)="setDependency($event.value)">
+            <mat-option *ngFor="let all of allUserStoriesList" [value]="all.uniqueId">
+              {{all.shortName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    </div>
+
+    <p><strong>Acceptance Criteria:</strong></p>
+      <p *ngFor="let ac of clickedus.acceptanceCriteria">
+        <li>{{ac}}<button mat-button class="maticonshow2" (click)=deleteac(ac)>
+            <mat-icon>delete</mat-icon>
+          </button></li>
+      </p>
+      <form [formGroup]="accform">
+        <mat-form-field style="text-underline-position: below;">
+          <input matInput [(ngModel)]="data.acceptanceCriteria" placeholder="Enter new acceptance criteria" id="ac"
+            formControlName="newac">
+        </mat-form-field>
+        <button mat-raised-button class="submit" color="primary" (click)=addac()
+          (click)="accform.reset()">Submit</button>
+      </form>
+
+
+
+    <p><strong>Points:</strong>
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+        <!-- <div *ngFor="let p of points"> -->
+          <mat-radio-button class="example-radio-button"  *ngFor="let p of points" [value]="p"
+            [checked]="clickedus.points==p"
+            (change)="changePoints($event)">
+            {{p}}
+          </mat-radio-button>
+        <!-- </div> -->
+      </mat-radio-group>
+
+      <p ><strong class="fix">Start Date:</strong>
+        <!-- <mat-form-field class="dateinput">
+          <input matInput style="margin-left:0.5em;" type="datetime-local" id="startdatetime"
+          value="{{startDateDisplay}}">
+
+        </mat-form-field> -->
+        <mat-form-field>
+          <input matInput id="startdatetime" (dateChange)="changeStartDate($event)" [matDatepicker]="picker" [value]="startDateDisplay">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p> 
+        <!-- <button mat-button (click)=changeStartDate()>Change</button> -->
+      
+
+      <!-- <p><strong>End Date:</strong>
+        {{endDateDisplay}}
+      </p> -->
+      <p ><strong class="fix">End Date:</strong>
+        <!-- <mat-form-field class="dateinput">
+          <input matInput style="margin-left:0.5em;" type="datetime-local" id="enddatetime"
+          value="{{endDateDisplay}}">
+
+        </mat-form-field>
+        <button mat-button (click)=changeEndDate()>Change</button> -->
+        <mat-form-field>
+          <input matInput id="enddatetime" (dateChange)="changeEndDate($event)" [matDatepicker]="picker1" [value]="endDateDisplay"> 
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </p>
+
+      <p><strong>Members assigned:</strong></p>
+      <mat-form-field>
+        <mat-select id="assign" placeholder="Select members" (selectionChange)="assign($event.value)">
+          <mat-option *ngFor="let ma of membersArray" [value]="ma">
+            {{ma.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div id="chips">
+        <mat-chip-list>
+          <mat-chip *ngFor="let a of clickedus.assignedTo">{{a.assignedToName}}
+              <mat-icon matChipRemove (click)=removeAssignedTo(a)>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      
+      <p><strong>Tasks:</strong></p>
+      <div *ngFor="let t of clickedus.tasks">
+
+
+        <div id="taskname">
+          {{t.taskName}}
+          <button mat-button id="deletetask" (click)=deletetask(t)>Delete</button>
+        </div>
+
+        <div id="subtask" *ngFor="let st of t.subtask">
+          <span>
+            <mat-checkbox color="primary" [checked]="st.subtaskStatus=='true'" (change)="onChange($event,st,t)">
+              {{st.subtaskDescription}}
+
+              <button mat-button class="maticonshow1" (click)="deletesubtask(t,st)">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </mat-checkbox>
+          </span>
+        </div>
+        <form id="subtask" [formGroup]="subtaskform">
+          <mat-form-field id="inputst">
+            <input matInput placeholder="Enter subtask" id="{{t.taskId}}" [formControlName]="t.taskId">
+          </mat-form-field>
+          <button mat-button class="submit" (click)=addsubtask(t) (click)="subtaskform.reset()">Submit</button>
+        </form>
+
+      </div>
+      <form [formGroup]="taskform">
+        <mat-form-field>
+          <input matInput [(ngModel)]="data.task" placeholder="Enter task" id="task" formControlName="newtask">
+        </mat-form-field>
+        <button mat-raised-button class="submit" color="primary" (click)=addtask()
+          (click)="taskform.reset()">Submit</button>
+      </form>
+
+  </div>
+
+
+
+
+
+  
+  <div mat-dialog-actions id="actions" style="justify-content: flex-end;">
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  </div>
+
+</div>

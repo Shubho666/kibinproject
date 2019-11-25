@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+  <p><strong>Enter User Story</strong></p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.newuserstory" placeholder="Enter user story name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.userstorydescription" placeholder="Enter user story description">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput [(ngModel)]="data.userstorypoints"  placeholder="Enter user story points" >
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <input matInput type="datetime-local" placeholder="start date" id="datetime">
+  </mat-form-field> -->
+
+  <!-- <mat-form-field>
+      <input matInput [(ngModel)]="data.userstorystatus" placeholder="Enter user story status">
+    </mat-form-field> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Discard</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

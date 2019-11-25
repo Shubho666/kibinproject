@@ -1,0 +1,6 @@
+<h2 style="text-align:center">IdeaZone Activity</h2>
+<mat-nav-list>
+  <mat-list-item  *ngFor="let a of Activities">
+    <strong><u>{{a.published.substring(0,24)}} &nbsp;:-&nbsp; </u></strong>&nbsp;{{a.description}}
+  </mat-list-item>
+</mat-nav-list>

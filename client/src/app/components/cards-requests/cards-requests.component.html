@@ -1,0 +1,44 @@
+<div *ngIf="calledBy === 'Privatespace'">
+  <h2 class="mat-display-1">My Requests</h2>
+</div>
+<div *ngIf="calledBy === 'Workspace'">
+  <h2 class="mat-display-1">Requests</h2>
+</div>
+
+<div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0" fxLayoutGap.xs="0">
+  <div class="item mat-display-1" *ngFor="let request of requests; let i = index" class="base">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{ request.Epic }}</mat-card-title>
+        <img class="logouticon">
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <div *ngFor="let story of request.userstories; let i = index">
+            <mat-divider></mat-divider>
+            <mat-list-item *ngIf="story != 'add'">
+              <div class="con">{{ story }}</div>
+            </mat-list-item>
+          </div>
+        </mat-list>
+        <div class="ACPREJ" *ngIf="calledBy === 'Workspace' && Role === 'owner'">
+          <button class="green-color" mat-flat-button (click)="changeStatus(request, i, 'workspace')">
+            Accept
+          </button>
+          <button class="red-color" mat-flat-button (click)="changeStatus(request, i, 'rejected')">
+            Reject
+          </button>
+        </div>
+        <div *ngIf="calledBy === 'Privatespace' && request.status === 'workspace'">
+          <p class="green-colorC" style="text-align: right;">Accepted</p>
+        </div>
+        <div *ngIf="calledBy === 'Privatespace' && request.status === 'requested'">
+          <p class="orange-color" style="text-align: right;">Requested</p>
+        </div>
+        <div *ngIf="calledBy === 'Privatespace' && request.status === 'rejected'">
+          <p class="red-colorC" style="text-align: right;">Rejected</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

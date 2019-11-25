@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Set Link</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <!-- <mat-label>Favorite food</mat-label> -->
+    <mat-select [(ngModel)]="data.linkCardId">
+      <mat-option *ngFor="let d of dataSource" [value]="d.id">
+        {{d.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button [mat-dialog-close]="data.linkCardId" cdkFocusInitial>Save</button>
+</div>

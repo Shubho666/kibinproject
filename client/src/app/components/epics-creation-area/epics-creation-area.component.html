@@ -1,0 +1,62 @@
+<div *ngIf="!requestsView">
+  <mat-expansion-panel *ngIf=" (calledBy!=='Workspace')|| (calledBy==='Workspace')" (keydown.escape)="EpicErrorMessage = false;MakeEverythingNull();panelOpenState=false" class="expansionPanel" [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    
+    <mat-expansion-panel-header>
+        <mat-panel-title >
+          <mat-form-field class="example-form-field" appearance="none">
+            <input #epic  matInput type="text" placeholder="Create an Epic" (keydown.space)="$event.stopPropagation()"
+              (blur)="EPIC=epic.value" [(ngModel)]="EPIC"
+            >
+          </mat-form-field>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+          <h2 *ngIf="EpicErrorMessage" class="mat-caption mat-title errorMessage"
+          (click)="EpicErrorMessage = false">
+'Epic With Same Name Already Exists , Please Try With New Name'
+         </h2>
+         </div>
+
+         
+    
+      <div *ngFor="let t of satya ;let i =index">
+        <mat-form-field class="example-form-field" appearance="none">
+          <input autofocus #story (keydown.enter)="newStory(i)" matInput placeholder="+ User Story"
+            [(ngModel)]="stories[i]">
+          <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="deletestory(i);">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+      </div>
+    
+      <div style="display:flex; justify-content:flex-end; padding: 1rem;">
+        <button (click)="EpicErrorMessage = false;MakeEverythingNull();panelOpenState=false" color="accent" mat-button>Discard</button>
+        <button [disabled]="!epic.value" (click)="createNewUserStories();" color="primary"
+          mat-button>Create</button>
+      </div>
+    
+    </mat-expansion-panel>
+    <app-card  [epics]="(calledBy === 'Workspace') ? epics:epicsp" 
+              [Calledby]="(calledBy === 'Workspace') ? 'Workspace':'Privatespace'"
+    (messageEvent2)="receiveMessage2($event)" (messageEvent)="receiveMessage($event)"
+    (messageEvent4)="receiveMessage4($event)"
+    (messageEvent5)="receiveMessage5($event)"
+    (messageEvent6)="receiveMessage6($event)"
+    (messageEvent7)="receiveMessage7($event)">
+  </app-card>
+</div>
+
+<div *ngIf="requestsView">
+<!-- <mat-tab *ngIf="calledBy=='Privatespace'" label="My Requests"> -->
+<app-cards-requests *ngIf="calledBy=='Privatespace'" 
+            [calledBy]="calledBy" [requests]="epicsPR"
+            ></app-cards-requests>
+<!-- </mat-tab> -->
+<!-- <mat-tab *ngIf="calledBy=='Workspace'" label="Requests"> -->
+<app-cards-requests *ngIf="calledBy=='Workspace'"
+              [calledBy]="calledBy" [requests]="epicsR"
+            (messageEvent3)="receiveMessage3($event)" ></app-cards-requests>
+<!-- </mat-tab> -->
+</div>
+
